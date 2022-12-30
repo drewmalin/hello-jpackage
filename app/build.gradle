@@ -1,0 +1,40 @@
+plugins {
+    id 'application'
+}
+
+project.ext.mainClassName = "com.drewmalin.hellojpackage.App"
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.guava:guava:30.0-jre'
+
+    testImplementation 'junit:junit:4.13.1'
+}
+
+/*
+ * Create a 'application' for convenience with local testing.
+ */
+application {
+    mainClass = 'com.drewmalin.hellojpackage.App'
+}
+
+/*
+ * Create a single fat jar to serve as the sole entrypoint for the application.
+ */
+tasks.register('fatJar', Jar) {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}

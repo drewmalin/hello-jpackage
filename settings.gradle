@@ -1,0 +1,4 @@
+rootProject.name = 'hello-jpackage'
+
+include('app')
+include('package')
