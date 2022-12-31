@@ -42,7 +42,7 @@ APP_ICON=${7}
 OUTPUT=${8}
 
 # Additional arguments to pass to jpackage.
-ADDITIONAL_ARGUMENTS=${9}
+ADDITIONAL_ARGUMENTS="${@:9}"
 
 jpackage \
   --type "${INSTALLER_TYPE}" \

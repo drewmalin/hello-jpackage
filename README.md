@@ -15,3 +15,7 @@ Delete artifacts with:
 ```bash
 ./gradlew :package:clean
 ```
+
+### Apple Code Signing
+
+TODO! Need to look into self-signed certs, but this may not be possible.
